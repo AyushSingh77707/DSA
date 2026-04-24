@@ -123,4 +123,46 @@ def find_middle(head):
         fast = fast.next.next
     return slow
 
+#Q=>Delete a given node from linkedlist,head is not given and it is guaranteed that i cant be last node
+def deletenode(node):
+    node.data=node.next.data
+    node.next=node.next.next
+    
+#Q=>delete nth node from end in linked list
+def deletenth(head,n):
+
+    l=0
+    curr=head
+    while curr!=None:
+        curr=curr.next
+        l+=1
+    curr=head
+    if n==l:
+        return head.next
+    for i in range(l-n-1):
+        curr=curr.next
+    curr.next=curr.next.next
+
+#Q=> remove duplicates from sorted linkedlist
+def removeduplicate_sorted(head):
+    if head is None or head.next is None:
+        return head
+    curr=head
+    while curr!=None and curr.next!=None:
+        if curr.next.data==curr.data:
+            curr.next=curr.next.next
+        else:
+            curr=curr.next
+    return head
+
+#Q=>Detect cycle in linkedlist
+def detect_cycle(head):
+    slow=head
+    fast=head
+    while fast!=None and fast.next!=None:
+        slow=slow.next
+        fast=fast.next.next
+        if slow==fast:
+            return True
+    return False
 
